@@ -7,11 +7,11 @@
     - service: jeeves
 
 
-- platform: group
-  name: ole
-  services:
-  - service: Jeeves
-  - service: html5
+# - platform: group
+#   name: ole
+#   services:
+#   - service: Jeeves
+#   - service: html5
 
 - platform: facebook
   name: Jeeves

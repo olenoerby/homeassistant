@@ -90,8 +90,9 @@ logger:
     switch.flux: warn
 
 
-automation: !include automation/automations.yaml
-script: !include scripts.yaml
+automation: !include_dir_merge_list automation
+# script: !include_dir_merge_list scripts
+shell_command: !include_dir_merge_list shell_commands
 zone: !include zones.yaml
 sensor: !include sensors.yaml
 # switch: !include switches.yaml
@@ -325,8 +326,7 @@ camera:
     still_image_url: http://10.0.0.23/image/jpeg.cgi
     mjpeg_url: http://10.0.0.23/video.cgi
 
-# Renew SSL certificate command
-shell_command: !include_dir_merge_list shell_commands
+
   
   
 
