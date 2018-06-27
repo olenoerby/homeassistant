@@ -1,0 +1,6 @@
+      >
+      {{ [
+      "Sundown is upon us, Sir.",
+      "The sun has set. Good Evening, Master Wayne.",
+      "It is evening now, Sir."
+      ] | random }} 

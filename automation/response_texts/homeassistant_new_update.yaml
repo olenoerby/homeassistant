@@ -1,0 +1,9 @@
+      >
+      {{ [
+      "There is a new update ( {{ states.updater.updater.state }} ) available for Home Assistant online.",
+      "A new update is available. Version {{ states.updater.updater.state }}.",
+      "Update {{ states.updater.updater.state }} for Home Assistant
+      is available and check 
+      {{states.updater.updater.attributes.release_notes}} 
+      for the latest changes."
+      ] | random }} 

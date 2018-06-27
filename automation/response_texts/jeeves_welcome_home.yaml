@@ -1,0 +1,7 @@
+      >
+      {{ [
+      "Welcome home, Sir.",
+      "Nice to see you!",
+      "Salutations!",
+      "Greetings!"
+      ] | random }}

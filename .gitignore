@@ -2,8 +2,9 @@
 !*.yaml
 .tradfri_psk.conf
 !scenes
-!automation/*
-!automation/*/
+!automation*
+!automation/mediaplayers
+!automation/response_texts
 !binary_sensors
 !shell_commands
 !.gitignore
