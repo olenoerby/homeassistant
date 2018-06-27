@@ -7,7 +7,7 @@
 !automation/response_texts
 !binary_sensors
 !shell_commands
-!.gitignore
+.gitignore
 certbot/*
 secrets.yaml
 known_devices.yaml
