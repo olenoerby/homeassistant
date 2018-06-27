@@ -2,6 +2,9 @@
 !*.yaml
 .tradfri_psk.conf
 !scenes
+!automation
+!binary_sensors
+!shell_commands
 !.gitignore
 certbot/*
 secrets.yaml

@@ -1,0 +1,1 @@
+restart_homeassistant: service home-assistant reboot
