@@ -1,0 +1,16 @@
+- alias: 'Jeeves Nice Day notification'
+  trigger:
+    - platform: zone
+      event: leave
+      zone: zone.home
+      entity_id: device_tracker.ole_telefon
+  condition:
+    - condition: time
+      before: '10:00:00'
+  action:
+    - service: notify.jeeves
+      data:
+        message: "I have turned off the lights because you left. Have a nice day, Sir."
+        target: !secret ole_phone_number
+    - service: light.turn_off
+      entity_id: group.all_lights

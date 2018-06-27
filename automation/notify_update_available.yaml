@@ -1,0 +1,15 @@
+#Notify about Updates available
+- alias: Update Available Notifications
+  trigger:
+    - platform: state
+      entity_id: updater.updater
+  action:
+    - service: notify.jeeves
+      data_template:
+        message: !include response_texts/homeassistant_new_update.yaml
+        target: !secret ole_phone_number
+    - service: persistent_notification.create
+      data_template:
+        message: !include response_texts/homeassistant_new_update.yaml
+        title: "Home Assistant update"
+        notification_id: "1000"

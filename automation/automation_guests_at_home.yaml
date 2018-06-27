@@ -7,11 +7,17 @@
       from: 'off'
       to: 'on'
   action:
+      # Turn off automations which could annoy guests
     - service: homeassistant.turn_off
       entity_id: group.guest_automations
+      # Turn on the boolean sensor guests_at_home
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.guests_at_home
+      # Tell me Guests are at home
     - service: notify.jeeves
       data:
         message: 'Guests have arrived at home.'
+        target: !secret ole_phone_number
 
 # If guests are leaving home
 - alias: Guests at Home
@@ -25,7 +31,9 @@
         minutes: 15
   action:
     - service: homeassistant.turn_on
-      entity_id: group.guest_automations   
+      entity_id: group.guest_automations
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.guests_at_home  
     - service: notify.jeeves
       data:
         message: 'Guests have left home and the house is in full operation mode again.'
