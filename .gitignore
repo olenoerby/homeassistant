@@ -3,6 +3,7 @@
 .tradfri_psk.conf
 !scenes
 !automation/*
+!automation/*/
 !binary_sensors
 !shell_commands
 !.gitignore
