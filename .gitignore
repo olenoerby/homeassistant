@@ -1,0 +1,11 @@
+*
+!*.yaml
+.tradfri_psk.conf
+!scenes
+!.gitignore
+certbot/*
+secrets.yaml
+known_devices.yaml
+zones.yaml
+html5_push_registrations.conf
+home-assistant.log

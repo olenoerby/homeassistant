@@ -1,0 +1,357 @@
+#
+# HOMEPAGE VIEW 
+#
+default_view:
+  view: yes
+  icon: mdi:home 
+  entities:
+    - group.time
+    - group.weather_darksky_uv_index
+    - group.mail
+    - sun.sun
+    - sensor.weather_symbol
+    - sensor.day_night
+    - sensor.yr_temperature
+    - sensor.yr_symbol
+    - sensor.weather_symbol
+    - device_tracker.ole_telefon
+    - device_tracker.galaxy_a5_2016
+    - group.weatherimage
+
+#    - group.weather
+
+    - group.trackingmap
+    - group.phone
+    - media_player.living_room_tv
+    - media_player.living_room_speaker
+    - group.home_camera
+    - group.coinbase
+
+#
+# VIEW - TRADFRI
+#
+view_tradfri:
+  name: Trådfri
+  view: yes
+  icon: mdi:ceiling-light
+  entities:
+    - group.tradfri_stue
+    - group.tradfri_entre
+    - group.tradfri_bedroom
+    - group.tradfri_bathroom
+    - group.hygge
+    # - group.tradfri_remote
+
+#
+# VIEW - WEATHER
+#
+view_weather:
+  name: Weather
+  view: yes
+  icon: mdi:weather-windy-variant
+  entities:
+    - group.weather_darksky
+    - group.weather_darksky_temperature
+    - group.weather_darksky_rain
+    - group.weather_darksky_wind
+    - group.weather_darksky_pressure
+    - group.weather_darksky_atmosphere
+
+
+#
+# VIEW - SOCIAL
+#
+view_social:
+  name: Social
+  view: yes
+  icon: mdi:account-multiple
+  entities:
+    - group.people
+    - group.steam
+    - group.lastfm
+    - group.twitch
+
+# VIEW - NETWORKING
+view_networking:
+  name: Networking
+  view: yes
+  icon: mdi:server-network
+  entities:
+    - group.speedtest
+    - group.pihole
+    - group.qnap_nas_alpha
+    - group.qnap_nas_terra
+
+# VIEW - INFORMATION AND SETTINGS
+view_information:
+  name: Info
+  view: yes
+  icon: mdi:information
+  entities:
+    - sensor.current_version
+    - group.rpiinfo
+    - group.ssl_cert
+
+# VIEW - AUTOMATIONS
+view_automations:
+  name: Automations
+  view: yes
+  icon: mdi:robot
+  entities:
+    - group.all_automations
+    - group.guest_automations
+
+
+
+######################################################################################################
+######################################################################################################
+######################################################################################################
+
+
+#
+# HOMEPAGE VIEW 
+#
+HomeAssistant:
+  name: Home Assistant Settings
+  entities:
+    - automation.update_available_notifications
+
+time:
+  name: Time
+  entities:
+    - sensor.time
+    - sensor.date
+    - sensor.time_utc
+
+home_camera:
+  name: Home Webcam
+  entities:
+    - camera.home_camera
+    - camera.dlink_webcam
+
+weatherimage:
+  name: Weather Image
+  entities:
+    - camera.weather
+    # - camera.iss
+
+weather_darksky:
+  name: Weather
+  entities:
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_uv_index
+
+weather_darksky_uv_index:
+  name: UV Index
+  entities:
+    - sensor.dark_sky_uv_index
+
+weather_darksky_temperature:
+  name: Temperature Information
+  entities:
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_humidity
+
+weather_darksky_rain:
+  name: Rain Precipitation
+  entities:
+    - sensor.dark_sky_precip_type
+    - sensor.dark_sky_precip_intensity
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_dew_point
+
+weather_darksky_wind:
+  name: Wind Information
+  entities:  
+    - sensor.dark_sky_wind_speed
+    - sensor.dark_sky_wind_bearing
+    - sensor.dark_sky_nearest_storm_distance
+
+weather_darksky_pressure:
+  name: Pressure Sensors
+  entities:
+    - sensor.dark_sky_pressure
+    - sensor.dark_sky_visibility
+    - sensor.dark_sky_ozone
+
+weather_darksky_atmosphere:
+  name: Atmosphere Information
+  entities:
+    - sensor.dark_sky_cloud_cover
+
+
+
+weather:
+  name: Weather from YR.no
+  entities:
+    - sensor.weather_temperature
+    - sensor.weather_wind_speed
+    - sensor.weather_wind_direction
+    - sensor.weather_pressure
+    - sensor.weather_precipitation
+    - sensor.weather_humidity
+    - sensor.weather_dewpoint_temperature
+    - sensor.weather_cloudiness
+
+mail:
+    - sensor.oledvicedk
+    - history_graph.ulste_emails
+
+phone:
+  name: Phone
+  entities:
+    - sensor.drive_to_home
+    - sensor.phone_bike_to_home
+    - sensor.drive_to_work
+    - sensor.sgs7_battery
+
+trackingmap:
+  name: Ole location
+  entities:
+    - camera.ole
+
+#
+# VIEW - TRADFRI
+#
+tradfri_stue_spot:
+  name: Stue Spot
+  entities:
+    - light.stue_spot_hjre_varm_hvid_3
+    - light.stue_spot_midt_varm_hvid_2
+    - light.stue_spot_venstre_varm_hvid_1
+
+tradfri_stue:
+  name: Stue
+  entities:
+    - group.tradfri_stue_spot
+    - light.stue_stander_hvidt_spektrum
+
+tradfri_entre:
+  name: Entré
+  entities:
+#    - light.entre
+    - light.entre_loftlampe
+
+tradfri_bedroom:
+  name: Soveværelse
+  entities:
+    #- light.sovevrelse
+    - light.sovevrelse_stander_hvidt_spektrum
+    - light.gang_loftlampe
+
+tradfri_bathroom:
+  name: Badeværelse
+  entities:
+    - light.toilet
+
+hygge:
+  name: Hygge Stemning
+  entities:
+    - boolean_input.hygge_mode
+    - switch.flux
+
+#tradfri_remote:
+#  name: IKEA Remote
+#  entities:
+#    - sensor.remote
+
+#
+# VIEW - SOCIAL
+#
+
+people:
+  name: People Tracked
+  entities:
+    - device_tracker.ole_telefon
+
+steam:
+  name: Steam Friends Online
+  entities:
+    - sensor.steam_76561198003340322 # Ole
+    - sensor.steam_76561198049340420 # Rasmus
+    - sensor.steam_76561198003063216 # Jesper
+
+lastfm:
+  name: LAST.fm
+  entities:
+    - sensor.lastfm_leutnant13
+    - sensor.lastfm_leutnant13_playcount
+
+twitch:
+  name: Twitch Subscribtions Online
+  entities:
+    - sensor.nerdcubed
+
+#
+# VIEW - NETWORKING
+#
+
+pihole:
+  name: Pi-Hole
+  entities:
+    - sensor.pihole_domains_blocked
+    - sensor.pihole_ads_blocked_today
+    - sensor.pihole_dns_unique_domains
+    - sensor.pihole_ads_percentage_blocked_today
+    - sensor.pihole_dns_unique_clients
+    - sensor.pihole_dns_queries_cached
+    - sensor.pihole_dns_queries_forwarded
+    - sensor.pihole_dns_queries_today
+    - history_graph.pihole_blocked_ads_today
+
+speedtest:
+  name: Speedtest Results
+  entities:
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - history_graph.speedtest_download_results
+    - history_graph.speedtest_upload_results
+
+qnap_nas_alpha:
+  name: ALPHA.local
+  entities:
+    - sensor.alpha_status
+    - sensor.alpha_free_space_datavol1
+    - sensor.alpha_volume_used_datavol1
+    - sensor.alpha_cpu_usage
+    - sensor.alpha_memory_usage
+
+qnap_nas_terra:
+  name: TERRA.local
+  entities:
+    - sensor.terra_status
+    - sensor.terra_free_space_volume_1
+    - sensor.terra_volume_used_volume_1
+    - sensor.terra_cpu_usage
+    - sensor.terra_memory_usage
+
+
+# VIEW - INFORMATION AND SETTINGS
+
+rpiinfo:
+  name: Usage
+  entities:
+    - sensor.ipv4_address_enxb827ebe1df58
+    - sensor.ram_available
+    - sensor.disk_used_home
+    - sensor.last_boot
+
+ssl_cert:
+  name: SSL certificate information
+  entities:
+    - sensor.ssl_cert_expiry
+    - switch.ssl_certificate_renew
+
+
+# VIEW - AUTOMATIONS
+
+guest_automations:
+  name: Disable when guests at home
+  entities:
+    - automation.jeeves_nice_day_notification
+    - automation.home_zone__turn_on_light_when_evening
+    - automation.home_zone__turn_on_light_when_home

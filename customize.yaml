@@ -1,0 +1,118 @@
+#group.all_devices: {}
+
+group.all_lights:
+  friendly_name: All Lights
+  hidden: true
+
+group.all_automations:
+  friendly_name: All Automations
+  hidden: false
+
+# TIME ICONS
+sensor.time_utc:
+  icon: mdi:clock-outline
+
+# PHONE ICONS
+sensor.drive_to_home:
+  friendly_name: Car to Home Time
+  icon: mdi:car
+
+sensor.phone_bike_to_home:
+  friendly_name: Bike to Home Time
+  icon: mdi:bike
+
+sensor.sgs7_battery:
+  icon: mdi:battery
+
+
+#
+# SOCIAL
+#
+sensor.lastfm_leutnant13_playcount:
+  icon: mdi:counter
+sensor.nerdcubed:
+  friendly_name: NerdCubed
+
+# WEATHER ICONS
+sensor.weather_wind_speed:
+  icon: mdi:speedometer
+sensor.weather_wind_direction:
+  icon: mdi:sign-direction
+sensor.weather_pressure:
+  icon: mdi:gauge
+sensor.weather_humidity:
+  icon: mdi:water-percent
+sensor.weather_dewpoint_temperature:
+  icon: mdi:weather-cloudy
+
+sensor.dark_sky_minutely_summary:
+  friendly_name: Next hour
+sensor.dark_sky_hourly_summary:
+  friendly_name: Today
+sensor.dark_sky_daily_summary:
+  friendly_name: This week
+
+
+
+
+
+# LIGHTS ICONS
+light.stue_stander_hvidt_spektrum:
+  icon: mdi:floor-lamp
+light.stue_spot_hjre_varm_hvid_3:
+  icon: mdi:track-light
+light.stue_spot_midt_varm_hvid_2:
+  icon: mdi:track-light
+light.stue_spot_venstre_varm_hvid_1:
+  icon: mdi:track-light
+light.sovevrelse_stander_hvidt_spektrum:
+  icon: mdi:floor-lamp
+light.entre_loftlampe:
+  icon: mdi:ceiling-light
+light.gang_loftlampe:
+  icon: mdi:ceiling-light
+
+
+
+
+# SPEEDTEST ICONS
+sensor.speedtest_ping:
+  icon: mdi:timer
+
+
+
+# SSL Expiry ICONS
+sensor.ssl_cert_expiry:
+  friendly_name: SSL Certificate Expiration
+  icon: mdi:calendar
+
+
+
+media_player.living_room_speaker:
+  friendly_name: Living Room Speaker
+  google_assistant: true
+  google_assistant_type: media_player
+
+media_player.living_room_tv:
+  friendly_name: Living Room TV
+  google_assistant: false
+  google_assistant_type: media_player
+
+light.stue:
+  google_assistant: false
+  friendly_name: Stue Lys-Gruppe
+
+light.entre:
+  friendly_name: Entré Lys-Gruppe
+  google_assistant: false
+
+light.sovevrlse:
+  friendly_name: Soveværelse Lys-Gruppe
+  google_assistant: false
+
+group.mail:
+  friendly_name: Ulæste mails
+
+sensor.oledvicedk:
+  friendly_name: ole@dvice.dk
+  unit_of_measurement: "Ulæste e-mails"

@@ -1,0 +1,31 @@
+#  Set up a notification platform so that alerts from
+#  Home Assistant can be received in the browser on a mobile device.
+
+- platform: group
+  name: all
+  services:
+    - service: jeeves
+
+
+- platform: group
+  name: ole
+  services:
+  - service: Jeeves
+  - service: html5
+
+- platform: facebook
+  name: Jeeves
+  page_access_token: !secret facebook_page_access_token
+
+# - platform: pushbullet
+#   name: pushbullet
+#   api_key: !secret pushbullet_api_key
+
+- platform: html5
+  name: html5
+  gcm_api_key: !secret gcm_api_key
+  gcm_sender_id: !secret gcm_sender_id
+
+# - name: sms
+#   platform: twilio_sms
+#   from_number: !secret twilio_number

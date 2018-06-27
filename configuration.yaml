@@ -1,0 +1,336 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Fruerstuevej 22J
+  # Location required to calculate the time the sun rises and sets
+  latitude: 55.0632646
+  longitude: 10.6269461
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 26
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone:  Europe/Copenhagen
+  
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+  javascript_version: es5
+
+# Enables configuration UI
+config:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# This offers a map on the frontend to display the location of tracked devices. To set up tracked devices, look at the device tracker documentation.
+map:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL or running in Docker etc
+  base_url: https://home.dvice.dk
+  ssl_certificate: /etc/letsencrypt/live/home.dvice.dk/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/home.dvice.dk/privkey.pem
+
+# Checks for available updates
+updater:
+
+# Logging to homeassistant.log
+logger:
+  default: info
+  logs:
+    aiohttp.access: warn
+    homeassistant.components.aiohttp.access: warn
+    homeassistant.components.device_tracker: warn
+    homeassistant.components.http: warn
+    homeassistant.components.http.ban: info
+    homeassistant.components.websocket_api: critical
+    homeassistant.components.discovery: warn
+    homeassistant.sensor.drive_to_home: warn
+    homeassistant.sensor.coinbase_btc_spot_price: warn
+    homeassistant.sensor.coinbase_eth_spot_price: warn
+    homeassistant.sensor.coinbase_ltc_spot_price: warn
+    homeassistant.sensor.since_last_boot: warn
+    #sun
+    homeassistant.core: warn
+    #systemmonitor
+    sensor.systemmonitor: warn
+    #pihole
+    sensor.pihole_ads_blocked_today: warn
+    sensor.pihole_ads_percentage_blocked_today: warn
+    sensor.pihole_dns_queries_cached: warn
+    sensor.pihole_dns_queries_forwarded: warn
+    sensor.pihole_dns_queries_today: warn
+    sensor.pihole_dns_unique_clients: warn
+    sensor.pihole_dns_unique_domains: warn
+    sensor.pihole_domains_blocked: warn
+    #weather
+    sensor.weather_symbol: warn
+    sensor.weather_temperature: warn
+    sensor.weather_wind_speed: warn
+    sensor.weather_wind_direction: warn
+    sensor.weather_pressure: warn
+    sensor.weather_precipitation: warn
+    sensor.weather_humidity: warn
+    sensor.weather_dewpoint_temperature: warn
+    sensor.weather_cloudiness: warn
+    sensor.weather_low_clouds: warn
+    sensor.weather_medium_clouds: warn
+    sensor.weather_high_clouds: warn
+    sensor.weather_fog: warn
+    #Google Maps
+    homeassistant.components.camera.generic: info
+    #Lights
+    light: warn
+    switch.flux: warn
+
+
+automation: !include automation/automations.yaml
+script: !include scripts.yaml
+zone: !include zones.yaml
+sensor: !include sensors.yaml
+# switch: !include switches.yaml
+group: !include groups.yaml
+scene: !include scenes.yaml
+
+# Discover some devices automatically
+# discovery:
+
+# IKEA Trådfri
+tradfri:
+  host: 10.0.0.101
+
+device_tracker:
+  - platform: owntracks
+    max_gps_accuracy: 40
+    waypoints: True
+    waypoint_whitelist:
+      - ha
+      - Ole
+#  - platform: bluetooth_tracker
+
+input_boolean:
+  ole_home:
+    name: Ole Home Presence
+    initial: on
+    icon: mdi:account
+
+  guests_at_home:
+    name: Guests at Home
+    initial: off
+    icon: mdi:account-multiple
+
+#alert:
+#  uv_index:
+#    name: UV Index is higher than 3
+#    done_message: I'm protected
+#    entity_id: binary_sensor.dark_sky_uv_index_high
+#    can_acknowledge: True
+#    repeat:
+#      - 15
+#      - 60
+#      - 240
+#    notifiers:
+#      - notify.jeeves
+    
+  
+
+# Connect to MQTT server
+mqtt:
+  broker: m21.cloudmqtt.com
+  port: 14253
+  username: ha
+  password: !secret mqtt_password
+
+# Enables support for tracking state changes over time.
+history:
+  exclude:
+    domains:
+      - weather
+      - camera
+      - flux
+      - automation
+      - pihole
+      - httplogin
+      - history_graph
+      - group
+      - pihole
+      - script
+      - view
+      - automation
+      - time
+      - sun
+    entities:
+      - sensor.current_version
+      - sensor.time
+      - sensor.date
+      - sensor.time_utc
+      - camera.weather
+      - boolean_input.hygge_mode
+      - sensor.weather_symbol
+      - sensor.ssl_cert_expiry
+      - sensor.last_boot
+      - sensor.disk_used_home
+      - sensor.ram_available
+      - sensor.ipv4_address_enxb827ebe1df58
+      - binary_sensor.workday_sensor
+      - input_boolean.ole_home
+      - sensor.time
+      - sensor.date
+      - sensor.time_utc
+      - sensor.battery
+      - sensor.drive_to_home
+      - sensor.phone_bike_to_home
+
+      - sensor.weather_cloudiness
+      - sensor.weather_direction
+
+      - sensor.dark_sky_icon
+      - sensor.dark_sky_icon_1
+      - sensor.dark_sky_icon_2
+      - sensor.dark_sky_uv_index
+      - sensor.dark_sky_uv_index_1
+      - sensor.dark_sky_uv_index_2
+
+      - sensor.pihole_domains_blocked
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_dns_unique_domains
+      - sensor.pihole_dns_queries_cached
+      - sensor.pihole_dns_queries_forwarded
+      - sensor.pihole_dns_queries_today
+
+      - light.entre
+      - light.stue
+      - light.sovevrelse
+      - light.gang
+      - sensor.tradfri_motion_sensor
+      - sensor.remote
+      - sensor.alpha_cpu_usage
+      - sensor.alpha_memory_usage      
+      - sensor.alpha_volume_used_datavol1_2
+      - sensor.terra_cpu_usage
+      - sensor.terra_memory_usage
+
+      - sensor.lastfm_leutnant13_playcount
+
+recorder:
+  db_url: mysql+pymysql://homeassistant:Morpheus5!@alpha.local/homeassistant
+  purge_keep_days: 31
+
+# View all events in a logbook
+logbook:
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.time_utc
+# Track the sun
+sun:
+
+# Binary sensors
+binary_sensor: !include_dir_merge_list binary_sensors
+
+
+# Generate graphs
+history_graph:
+  graph_pihole:
+    name: Pihole Blocked Ads Today
+    entities:
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_ads_percentage_blocked_today
+    hours_to_show: 48
+    refresh: 60
+
+  graph_speedtest_down:
+    name: Speedtest Download Results
+    entities:
+    - sensor.speedtest_download
+    hours_to_show: 48
+    refresh: 900
+
+  graph_speedtest_up:
+    name: Speedtest Upload Results
+    entities:
+    - sensor.speedtest_upload
+    hours_to_show: 48
+    refresh: 900
+
+  graph_mails:
+    name: Unread
+    entities:
+    - sensor.oledvicedk
+    hours_to_show: 48
+    refresh: 60
+
+
+switch:
+#Flux light control
+#   - platform: flux
+#     lights:
+#       - light.gang_loftlampe
+#       - light.sovevrelse_stander_hvidt_spektrum
+#       - light.entre_loftlampe
+#     start_time: '7:00'
+#     stop_time: '22:00'
+#     start_colortemp: 1250
+#     stop_colortemp: 1457
+#     brightness: 2
+#     mode: mired
+
+media_player:
+  - platform: cast
+
+# Text to speech
+#tts:
+#   platform: google
+
+# Google Assistant
+google_assistant:
+  project_id: jeeves-28847
+  client_id: mWpnn5QTndaPaIybwKQdTJUjoiclQ6L0IA21WyzeRd0EgHGwwZamlimdpHtfwtX1Zy53MvJZAge4TfWG
+  agent_user_id: leutnant13@gmail.com
+  api_key: AIzaSyA_OOF6SkEhm9uvBqgYSY5s2i35fbQmlSY
+  access_token: IzcLO8cUfHpJxPJKJ2BaCCDS5HRbJ9tpBN3OI7sl0u48oWoryBc9FZFscPC1oMydJsYj7TwjyjbuMWkj
+  exposed_domains:
+    - light
+
+notify: !include notify.yaml
+
+camera:
+# Show Ole Telefon location
+  - platform: generic
+    name: Ole
+    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.ole_telefon.attributes.latitude }},{{ states.device_tracker.ole_telefon.attributes.longitude }}&zoom=14&size=492x492&maptype=roadmap&markers=color:black%7Clabel:Ole%7C{{ states.device_tracker.ole_telefon.attributes.latitude }},{{ states.device_tracker.ole_telefon.attributes.longitude }}
+    limit_refetch_to_url_change: true
+
+# International Space Station location
+#  - platform: generic
+#    name: ISS
+#    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.binary_sensor.iss.attributes.latitude }},{{ states.binary_sensor.iss.attributes.longitude }}&zoom=5&size=500x500&maptype=roadmap&markers=color:white%7Clabel:ISS%7C{{ states.binary_sensor.iss.attributes.latitude }},{{ states.binary_sensor.iss.attributes.longitude }}
+#    limit_refetch_to_url_change: true
+
+# Show YR.no weather Svendborg
+  - platform: generic
+    name: Weather
+    still_image_url: https://www.yr.no/sted/Danmark/Syddanmark/Svendborg//meteogram.svg
+    content_type: 'image/svg+xml'
+
+  - platform: mjpeg
+    name: D-Link Webcam
+    still_image_url: http://10.0.0.23/image/jpeg.cgi
+    mjpeg_url: http://10.0.0.23/video.cgi
+
+# Renew SSL certificate command
+shell_command: !include_dir_merge_list shell_commands
+  
+  
+
+
+
+
+
