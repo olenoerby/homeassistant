@@ -1,0 +1,46 @@
+default: warn
+logs:
+  aiohttp.access: warn
+  homeassistant.components.aiohttp.access: warn
+  homeassistant.components.device_tracker: warn
+  homeassistant.components.http: warn
+  homeassistant.components.http.ban: info
+  homeassistant.components.websocket_api: critical
+  homeassistant.components.discovery: warn
+  homeassistant.sensor.drive_to_home: warn
+  homeassistant.sensor.coinbase_btc_spot_price: warn
+  homeassistant.sensor.coinbase_eth_spot_price: warn
+  homeassistant.sensor.coinbase_ltc_spot_price: warn
+  homeassistant.sensor.since_last_boot: warn
+  #sun
+  homeassistant.core: warn
+  #systemmonitor
+  sensor.systemmonitor: warn
+  #pihole
+  sensor.pihole_ads_blocked_today: warn
+  sensor.pihole_ads_percentage_blocked_today: warn
+  sensor.pihole_dns_queries_cached: warn
+  sensor.pihole_dns_queries_forwarded: warn
+  sensor.pihole_dns_queries_today: warn
+  sensor.pihole_dns_unique_clients: warn
+  sensor.pihole_dns_unique_domains: warn
+  sensor.pihole_domains_blocked: warn
+  #weather
+  sensor.weather_symbol: warn
+  sensor.weather_temperature: warn
+  sensor.weather_wind_speed: warn
+  sensor.weather_wind_direction: warn
+  sensor.weather_pressure: warn
+  sensor.weather_precipitation: warn
+  sensor.weather_humidity: warn
+  sensor.weather_dewpoint_temperature: warn
+  sensor.weather_cloudiness: warn
+  sensor.weather_low_clouds: warn
+  sensor.weather_medium_clouds: warn
+  sensor.weather_high_clouds: warn
+  sensor.weather_fog: warn
+  #Google Maps
+  homeassistant.components.camera.generic: info
+  #Lights
+  light: warn
+  switch.flux: warn

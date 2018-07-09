@@ -20,7 +20,7 @@
         target: !secret ole_phone_number
 
 # If guests are leaving home
-- alias: Guests at Home
+- alias: Guests Leaving Home
   hide_entity: True
   trigger:
     - platform: state
