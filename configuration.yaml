@@ -38,6 +38,7 @@ sensor: !include_dir_merge_list sensors
 group: !include groups.yaml
 scene: !include scenes.yaml
 recorder: !include recorder.yaml
+influxdb: !include influxdb.yaml
 
 # IKEA Trådfri
 tradfri:
@@ -51,6 +52,10 @@ device_tracker:
       - ha
       - Ole
   - platform: bluetooth_tracker
+  - platform: aruba
+    host: !secret aruba_virtual_controller_ip
+    username: !secret aruba_ap_user
+    password: !secret aruba_ap_password
 
 input_boolean:
   ole_home:
@@ -118,9 +123,6 @@ history:
       - sensor.ipv4_address_enxb827ebe1df58
       - binary_sensor.workday_sensor
       - input_boolean.ole_home
-      - sensor.time
-      - sensor.date
-      - sensor.time_utc
       - sensor.battery
       - sensor.drive_to_home
       - sensor.phone_bike_to_home
@@ -148,6 +150,7 @@ history:
       - light.gang
       - sensor.tradfri_motion_sensor
       - sensor.remote
+
       - sensor.alpha_cpu_usage
       - sensor.alpha_memory_usage      
       - sensor.alpha_volume_used_datavol1_2
@@ -163,6 +166,7 @@ logbook:
       - sensor.time
       - sensor.date
       - sensor.time_utc
+
 # Track the sun
 sun:
 
@@ -217,23 +221,13 @@ switch:
 #     mode: mired
 
 cast:
-  media_player:
 
 # Text to speech
 #tts:
 #   platform: google
 
-# Google Assistant
-google_assistant:
-  project_id: jeeves-28847
-  client_id: mWpnn5QTndaPaIybwKQdTJUjoiclQ6L0IA21WyzeRd0EgHGwwZamlimdpHtfwtX1Zy53MvJZAge4TfWG
-  agent_user_id: leutnant13@gmail.com
-  api_key: AIzaSyA_OOF6SkEhm9uvBqgYSY5s2i35fbQmlSY
-  access_token: IzcLO8cUfHpJxPJKJ2BaCCDS5HRbJ9tpBN3OI7sl0u48oWoryBc9FZFscPC1oMydJsYj7TwjyjbuMWkj
-  exposed_domains:
-    - light
-
-
+weather:
+  - platform: yweather
 
 camera:
 # Show Ole Telefon location

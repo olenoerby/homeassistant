@@ -1,8 +1,8 @@
 #Notify about Updates available
-- alias: Update Available Notifications
+- alias: 'Update Available Notifications'
   trigger:
-    - platform: state
-      entity_id: updater.updater
+    platform: state
+    entity_id: updater.updater
   action:
     - service: notify.jeeves
       data_template:

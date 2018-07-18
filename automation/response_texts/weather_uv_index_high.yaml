@@ -1,0 +1,2 @@
+      >
+      {{ ["I think you would enjoy to", "You might want to", "It would be favourable to", "It is a good time to "] | random }} {{ ["put on some sunscreen today", "bring the sunscreen with you", "apply some sunscreen", "bring some protective headgear", ] | random }}, as the UV index has just risen to {{states.sensor.dark_sky_uv_index.state}}.

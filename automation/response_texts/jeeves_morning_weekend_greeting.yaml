@@ -1,0 +1,24 @@
+>
+    {% if now().strftime("%H")|int < 12 %}Good morning, {% elif now().strftime("%H")|int < 18 %}Good afternoon, {% else %}Good evening, {% endif %}{{ ["Ole","Sir","Master Noerby","Sire"] | random }}.
+   
+    Today is a {{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().weekday()] }} and the date is .
+
+    It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees in Svendborg. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature.state|round(1)}} degrees.
+
+    Have a{{ [" pleasant", " amiable", " charming", " cheerful", " delightful", "n enjoyable", " lovely", " pleasing", " satisfying"] | random }} day!
+
+
+
+# [ Time of day ]Good morning, {{ ["Ole", "Sir"] | random }}
+
+# The time is [ Time ] 7:30 and today is a [ Weekday ] Wednesday
+
+# The weather is [Summary] Partly cloudy, turning [ Hourly summary ] Mostly cloudy starting this evening.
+
+# It will take [ Car to Home Time] 5 minutes to drive to work today in the current traffic.
+
+# [ Guest sensor active ]You seem to currently have a guest in the house, so I will not be turning off the lights.
+
+# Have a nice [Time of day]morning.
+
+

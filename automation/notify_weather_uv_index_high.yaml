@@ -1,0 +1,17 @@
+#Notify about Updates available
+- alias: UV Index High
+  trigger:
+    - platform: numeric_state
+      entity_id: 
+        - sensor.dark_sky_uv_index
+      above: 5
+  action:
+    - service: notify.jeeves
+      data_template:
+        message: !include response_texts/weather_uv_index_high.yaml
+        target: !secret ole_phone_number
+    - service: persistent_notification.create
+      data_template:
+        message: !include response_texts/weather_uv_index_high.yaml
+        title: "UV Index is high"
+        notification_id: "1001"
