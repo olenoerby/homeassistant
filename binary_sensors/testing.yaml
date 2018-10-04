@@ -1,7 +1,0 @@
-#  - platform: iss
-#    show_on_map: true
-# - platform: template
-#   sensors:
-#     dark_sky_uv_index_high:
-#       value_template: '{{ states.sensor.dark_sky_uv_index.state > 3 }}'
-#       friendly_name: Dark Sky UV Index High 

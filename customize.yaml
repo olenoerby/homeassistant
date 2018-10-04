@@ -113,6 +113,6 @@ light.sovevrlse:
 group.mail:
   friendly_name: Ulæste mails
 
-sensor.oledvicedk:
+sensor.olemail:
   friendly_name: ole@dvice.dk
   unit_of_measurement: "Ulæste e-mails"

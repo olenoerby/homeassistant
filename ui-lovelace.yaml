@@ -15,14 +15,15 @@ views:
           - entity: sensor.dark_sky_uv_index
             name: UV level
       
-      - type: entity-filter
+      - type: entities
         entities:
-          - entity: device_tracker.ole_telefon
+          - entity: device_tracker.ole_s9plus
             name: Ole
         state_filter:
-          - "Work"
-          - "Home"
-          - "School"
+          - Work
+          - Home
+          - School
+        show_empty: false
 
       - type: picture-entity
         title: Aquarium
@@ -37,18 +38,21 @@ views:
       - type: media-control
         entity: media_player.living_room_tv
 
+      - type: media-control
+        entity: media_player.living_room_speaker
+
       - type: vertical-stack
         name: Media Players
         cards:
           - type: entities
             entities: 
               - media_player.living_room_tv
-              - media_player.living_room_speaker_2
+              - media_player.living_room_speaker
 
       - type: map
         name: Tracked Devices
         entities:
-          - entity: device_tracker.ole_telefon
+          - entity: device_tracker.ole_s9plus
           - zone.home
 
       - type: vertical-stack
@@ -61,13 +65,14 @@ views:
               - sensor.drive_to_work
           - type: entities
             entities:
-              - sensor.sgs7_battery
+              - sensor.phone_battery
 
   - title: Lights
     id: lights
     theme: light-mode
     cards:
       - type: vertical-stack
+        title: Stue
         cards:
           - type: entities
             entities:
@@ -109,24 +114,57 @@ views:
     id: weather
     theme: light-mode
     cards:
-      - type: "custom:weather-card"
-        entity_weather: weather.yweather
-        entity_sun: sun.sun
-      - type: "custom:weather-card"
-        entity_weather: weather.yweather
-        entity_sun: sun.sun
+      - type: "weather-forecast"
+        title: "Weather Forecast"
+        entity: weather.yweather
+
       - type: entities
-        title: Weather
+        title: Weather Summary
         entities:
-          - sensor.pws_weather
-          - sensor.pws_temp_f
-          - sensor.pws_relative_humidity
-          - sensor.pws_wind_string
-          - sensor.dark_sky_cloud_coverage
-          - sensor.pollen_level
-          - sensor.cold_flu_risk
+          - sensor.dark_sky_summary
           - sensor.dark_sky_hourly_summary
           - sensor.dark_sky_daily_summary
+
+      - type: entities
+        title: UV Index
+        entities:
+          - sensor.dark_sky_uv_index
+
+      - type: entities
+        title: Temperatures
+        entities:
+          - sensor.dark_sky_temperature
+          - sensor.dark_sky_apparent_temperature
+          - sensor.dark_sky_humidity
+
+
+      - type: entities
+        title: Rain Precipitation
+        entities:
+          - sensor.dark_sky_precip_type
+          - sensor.dark_sky_precip_intensity
+          - sensor.dark_sky_precip_probability
+          - sensor.dark_sky_dew_point
+
+      - type: entities
+        title: Wind Info
+        entities:
+          - sensor.dark_sky_wind_speed
+          - sensor.dark_sky_wind_bearing
+          - sensor.dark_sky_nearest_storm_distance
+
+      - type: entities
+        title: Pressure Sensors
+        entities:
+          - sensor.dark_sky_pressure
+          - sensor.dark_sky_visibility
+          - sensor.dark_sky_ozone
+
+      - type: entities
+        title: Atmosphere Updates
+        entities:
+          - sensor.dark_sky_cloud_coverage
+
 
 
   - title: Social
@@ -134,11 +172,20 @@ views:
     theme: light-mode
     cards:
 
-
   - title: Networking
     id: networking
     theme: light-mode
     cards:
+
+  - title: Netbox Overview
+    id: netbox
+    theme: light-mode
+    panel: true
+    cards:
+      - type: picture
+        title: Netbox Topology
+        image: "http://doc.olenoerby.dk/api/extras/topology-maps/1/render/"
+#        navigation_path: http://doc.olenoerby.dk
 
   - title: Information
     id: info
@@ -149,3 +196,7 @@ views:
     id: automation
     theme: light-mode
     cards:
+    - type: entities
+      title: Automations
+      entities:
+      - group.all_automations

@@ -12,6 +12,28 @@ discovery:
 conversation:
 map:
 updater:
+sun:
+#cast:
+camera: !include camera.yaml
+#influxdb: !include influxdb.yaml
+group: !include groups.yaml
+logger: !include logger.yaml
+notify: !include notify.yaml
+recorder: !include recorder.yaml
+scene: !include scenes.yaml
+zone: !include zones.yaml
+
+# FOLDERS
+automation: !include_dir_merge_list automation
+binary_sensor: !include_dir_merge_list binary_sensors
+sensor: !include_dir_merge_list sensors
+shell_command: !include shell_commands.yaml
+script: !include scripts.yaml
+# switch: !include switches.yaml
+
+
+
+###### CONFIGURATION BEGINNING ######
 
 frontend:
   javascript_version: latest
@@ -21,41 +43,28 @@ http:
   api_password: !secret http_password
   # Uncomment this if you are using SSL or running in Docker etc
   base_url: !secret base_url
-  ssl_certificate: /etc/letsencrypt/live/home.dvice.dk/fullchain.pem
-  ssl_key: /etc/letsencrypt/live/home.dvice.dk/privkey.pem
+  ssl_certificate: !secret ssl_certificate_path
+  ssl_key: !secret ssl_key_path
 
-# Logging to homeassistant.log
-logger: !include logger.yaml
-
-
-automation: !include_dir_merge_list automation
-# script: !include_dir_merge_list scripts
-shell_command: !include_dir_merge_list shell_commands
-notify: !include notify.yaml
-zone: !include zones.yaml
-sensor: !include_dir_merge_list sensors
-# switch: !include switches.yaml
-group: !include groups.yaml
-scene: !include scenes.yaml
-recorder: !include recorder.yaml
-influxdb: !include influxdb.yaml
 
 # IKEA Trådfri
 tradfri:
   host: !secret tradfri_ip
 
 device_tracker:
-  - platform: owntracks
-    max_gps_accuracy: 40
-    waypoints: True
-    waypoint_whitelist:
-      - ha
-      - Ole
+  - platform: traccar
+    username: !secret traccar_user
+    password: !secret traccar_password
+    host: !secret traccar_host
+
   - platform: bluetooth_tracker
+    track_new_devices: false
+
   - platform: aruba
     host: !secret aruba_virtual_controller_ip
     username: !secret aruba_ap_user
     password: !secret aruba_ap_password
+    track_new_devices: false
 
 input_boolean:
   ole_home:
@@ -85,9 +94,9 @@ input_boolean:
 
 # Connect to MQTT server
 mqtt:
-  broker: m21.cloudmqtt.com
+  broker: !secret mqtt_broker
   port: 14253
-  username: ha
+  username: !secret mqtt_username
   password: !secret mqtt_password
 
 # Enables support for tracking state changes over time.
@@ -113,7 +122,7 @@ history:
       - sensor.time
       - sensor.date
       - sensor.time_utc
-      - camera.weather
+
       - boolean_input.hygge_mode
       - sensor.weather_symbol
       - sensor.ssl_cert_expiry
@@ -167,12 +176,11 @@ logbook:
       - sensor.date
       - sensor.time_utc
 
-# Track the sun
-sun:
-
-# Binary sensors
-binary_sensor: !include_dir_merge_list binary_sensors
-
+#panel_iframe:
+#  nodered:
+#    title: Node-RED
+#    url: http://home.dvice.dk:1880 
+#    icon: mdi:nodejs
 
 # Generate graphs
 history_graph:
@@ -201,26 +209,11 @@ history_graph:
   graph_mails:
     name: Unread
     entities:
-    - sensor.oledvicedk
+    - sensor.olemail
     hours_to_show: 48
     refresh: 60
 
 
-switch:
-#Flux light control
-#   - platform: flux
-#     lights:
-#       - light.gang_loftlampe
-#       - light.sovevrelse_stander_hvidt_spektrum
-#       - light.entre_loftlampe
-#     start_time: '7:00'
-#     stop_time: '22:00'
-#     start_colortemp: 1250
-#     stop_colortemp: 1457
-#     brightness: 2
-#     mode: mired
-
-cast:
 
 # Text to speech
 #tts:
@@ -238,36 +231,3 @@ google_assistant:
 
 weather:
   - platform: yweather
-
-camera:
-# Show Ole Telefon location
-  - platform: generic
-    name: Ole
-    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.ole_telefon.attributes.latitude }},{{ states.device_tracker.ole_telefon.attributes.longitude }}&zoom=14&size=492x492&maptype=roadmap&markers=color:black%7Clabel:Ole%7C{{ states.device_tracker.ole_telefon.attributes.latitude }},{{ states.device_tracker.ole_telefon.attributes.longitude }}
-    limit_refetch_to_url_change: true
-
-# International Space Station location
-#  - platform: generic
-#    name: ISS
-#    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.binary_sensor.iss.attributes.latitude }},{{ states.binary_sensor.iss.attributes.longitude }}&zoom=5&size=500x500&maptype=roadmap&markers=color:white%7Clabel:ISS%7C{{ states.binary_sensor.iss.attributes.latitude }},{{ states.binary_sensor.iss.attributes.longitude }}
-#    limit_refetch_to_url_change: true
-
-# Show YR.no weather Svendborg
-  - platform: generic
-    name: Weather
-    still_image_url: https://www.yr.no/sted/Danmark/Syddanmark/Svendborg//meteogram.svg
-    content_type: 'image/svg+xml'
-
-  - platform: mjpeg
-    name: D-Link Webcam
-    still_image_url: http://10.0.0.23/image/jpeg.cgi
-    mjpeg_url: http://10.0.0.23/video.cgi
-
-
-  
-  
-
-
-
-
-

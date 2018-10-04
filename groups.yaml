@@ -14,8 +14,9 @@ default_view:
     - sensor.yr_temperature
     - sensor.yr_symbol
     - sensor.weather_symbol
-    - device_tracker.ole_telefon
-    - device_tracker.galaxy_a5_2016
+    - device_tracker.ole_s9plus
+    - device_tracker.ford_fiesta
+    - device_tracker.kirstelefon_bluetooth
     - group.weatherimage
 
 #    - group.weather
@@ -51,6 +52,7 @@ view_weather:
   icon: mdi:weather-windy-variant
   entities:
     - group.weather_darksky
+    - group.weather_darksky_uv_index
     - group.weather_darksky_temperature
     - group.weather_darksky_rain
     - group.weather_darksky_wind
@@ -81,6 +83,7 @@ view_networking:
     - group.pihole
     - group.qnap_nas_alpha
     - group.qnap_nas_terra
+    - group.netbox
 
 # VIEW - INFORMATION AND SETTINGS
 view_information:
@@ -141,7 +144,6 @@ weather_darksky:
     - sensor.dark_sky_summary
     - sensor.dark_sky_hourly_summary
     - sensor.dark_sky_daily_summary
-    - sensor.dark_sky_uv_index
 
 weather_darksky_uv_index:
   name: UV Index
@@ -197,7 +199,7 @@ weather:
     - sensor.weather_cloudiness
 
 mail:
-    - sensor.oledvicedk
+    - sensor.olemail
     - history_graph.ulste_emails
 
 phone:
@@ -206,7 +208,7 @@ phone:
     - sensor.drive_to_home
     - sensor.phone_bike_to_home
     - sensor.drive_to_work
-    - sensor.sgs7_battery
+    - sensor.phone_battery
 
 trackingmap:
   name: Ole location
@@ -265,7 +267,7 @@ hygge:
 people:
   name: People Tracked
   entities:
-    - device_tracker.ole_telefon
+    - device_tracker.ole_s9plus
 
 steam:
   name: Steam Friends Online
@@ -329,13 +331,19 @@ qnap_nas_terra:
     - sensor.terra_cpu_usage
     - sensor.terra_memory_usage
 
+netbox:
+  name: Netbox Overview
+  entities: 
+    - camera.netbox_topology
 
 # VIEW - INFORMATION AND SETTINGS
 
 rpiinfo:
   name: Usage
   entities:
-    - sensor.ipv4_address_enxb827ebe1df58
+    - sensor.ipv4_address_eno1
+    - sensor.homedvicedk
+    - sensor.serverdvicedk
     - sensor.ram_available
     - sensor.disk_used_home
     - sensor.last_boot

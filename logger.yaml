@@ -1,6 +1,8 @@
-default: warn
+default: info
 logs:
   aiohttp.access: warn
+  tradfri: info
+  twitch: info
   homeassistant.components.aiohttp.access: warn
   homeassistant.components.device_tracker: warn
   homeassistant.components.http: warn
@@ -8,15 +10,13 @@ logs:
   homeassistant.components.websocket_api: critical
   homeassistant.components.discovery: warn
   homeassistant.sensor.drive_to_home: warn
-  homeassistant.sensor.coinbase_btc_spot_price: warn
-  homeassistant.sensor.coinbase_eth_spot_price: warn
-  homeassistant.sensor.coinbase_ltc_spot_price: warn
-  homeassistant.sensor.since_last_boot: warn
   #sun
   homeassistant.core: warn
   #systemmonitor
   sensor.systemmonitor: warn
   #pihole
+  pihole: warn
+  sensor.pihole: warn
   sensor.pihole_ads_blocked_today: warn
   sensor.pihole_ads_percentage_blocked_today: warn
   sensor.pihole_dns_queries_cached: warn
@@ -44,3 +44,5 @@ logs:
   #Lights
   light: warn
   switch.flux: warn
+  custom_components.device_tracker.traccar: debug
+  aioimaplib.aioimaplib: info
