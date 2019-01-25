@@ -1,7 +1,7 @@
 # Show Ole Telefon location
 #- platform: generic
 #  name: Ole
-#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.ole_s9plus.attributes.latitude }},{{ states.device_tracker.ole_s9plus.attributes.longitude }}&zoom=14&size=492x492&maptype=roadmap&markers=color:black%7Clabel:Ole%7C{{ states.device_tracker.ole_s9plus.attributes.latitude }},{{ states.device_tracker.ole_s9plus.attributes.longitude }}&key=AIzaSyAXakuuAtwXYnGmbOgeNerfMWzRa9Hfw2g
+#  still_image_url: !secret google_maps_ole_location
 #  limit_refetch_to_url_change: false
 
 # International Space Station location
