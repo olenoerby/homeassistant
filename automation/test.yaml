@@ -1,0 +1,5 @@
+#Notify about Updates available
+- alias: 'Test'
+  trigger:
+  action:
+    - service: shell_command.test

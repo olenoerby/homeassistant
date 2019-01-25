@@ -1,0 +1,5 @@
+#Notify about Updates available
+- alias: 'Upgrade Home Assistant'
+  trigger:
+  action:
+    - service: shell_command.upgrade_homeassistant

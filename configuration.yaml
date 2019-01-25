@@ -13,9 +13,8 @@ conversation:
 map:
 updater:
 sun:
-#cast:
+
 camera: !include camera.yaml
-#influxdb: !include influxdb.yaml
 group: !include groups.yaml
 logger: !include logger.yaml
 notify: !include notify.yaml
@@ -24,7 +23,8 @@ scene: !include scenes.yaml
 zone: !include zones.yaml
 
 # FOLDERS
-automation: !include_dir_merge_list automation
+automation old: !include_dir_merge_list automation
+automation: !include automations.yaml
 binary_sensor: !include_dir_merge_list binary_sensors
 sensor: !include_dir_merge_list sensors
 shell_command: !include shell_commands.yaml
@@ -37,10 +37,12 @@ script: !include scripts.yaml
 
 frontend:
   javascript_version: latest
+#  extra_html_url:
+#    - frontend_cams.html
 
 http:
   # Uncomment this to add a password (recommended!)
-  api_password: !secret http_password
+#  api_password: !secret http_password
   # Uncomment this if you are using SSL or running in Docker etc
   base_url: !secret base_url
   ssl_certificate: !secret ssl_certificate_path
@@ -60,23 +62,6 @@ device_tracker:
   - platform: bluetooth_tracker
     track_new_devices: false
 
-  - platform: aruba
-    host: !secret aruba_virtual_controller_ip
-    username: !secret aruba_ap_user
-    password: !secret aruba_ap_password
-    track_new_devices: false
-
-input_boolean:
-  ole_home:
-    name: Ole Home Presence
-    initial: on
-    icon: mdi:account
-
-  guests_at_home:
-    name: Guests at Home
-    initial: off
-    icon: mdi:account-multiple
-
 #alert:
 #  uv_index:
 #    name: UV Index is higher than 3
@@ -90,15 +75,6 @@ input_boolean:
 #    notifiers:
 #      - notify.jeeves
     
-  
-
-# Connect to MQTT server
-mqtt:
-  broker: !secret mqtt_broker
-  port: 14253
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-
 # Enables support for tracking state changes over time.
 history:
   exclude:
@@ -176,12 +152,6 @@ logbook:
       - sensor.date
       - sensor.time_utc
 
-#panel_iframe:
-#  nodered:
-#    title: Node-RED
-#    url: http://home.dvice.dk:1880 
-#    icon: mdi:nodejs
-
 # Generate graphs
 history_graph:
   graph_pihole:
@@ -216,18 +186,47 @@ history_graph:
 
 
 # Text to speech
-#tts:
-#   platform: google
+tts:
+  - platform: google
 
 # Google Assistant
 google_assistant:
   project_id: !secret project_id
-  client_id: !secret client_id
-  agent_user_id: !secret agent_user_id
   api_key: !secret api_key
-  access_token: !secret access_token
-  exposed_domains:
-    - light
+#  exposed_domains:
+#    - light
 
-weather:
-  - platform: yweather
+# weather:
+#   - platform: yweather
+
+apcupsd:
+  host: 127.0.0.1
+  port: 3551
+
+cloudflare:
+  email: !secret cloudflare_email
+  api_key: !secret cloudflare_api
+  zone: !secret cloudflare_zone
+  records:
+    - home
+
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+octoprint:
+  - host: 10.0.0.11
+    api_key: !secret octoprint_api
+    name: Prusa i3 Mk2
+    number_of_tools: 1
+    bed: true
+    sensors:
+      monitored_conditions:
+        - 'Temperatures'
+        - 'Current State'
+        - 'Job Percentage'
+        - 'Time Elapsed'
+        - 'Time Remaining'
+
+tado:
+  username: !secret tado_username
+  password: !secret tado_password

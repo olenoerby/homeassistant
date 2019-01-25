@@ -3,7 +3,7 @@
     - platform: zone
       event: leave
       zone: zone.home
-      entity_id: device_tracker.ole_telefon
+      entity_id: device_tracker.ole_s9plus
   condition:
     - condition: time
       before: '10:00:00'

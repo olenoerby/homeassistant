@@ -1,3 +1,4 @@
-restart_homeassistant: 'service homeassistant restart'
-renew_ssl: ~/.homeassistant/certbot/certbot-auto renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
-upgrade_homeassistant: bash ~/.homeassistant/upgrade_homeassistant.sh
+restart_homeassistant: bash service homeassistant restart
+renew_ssl: ~/.homeassistant/shell_commands/certbot_update.sh
+upgrade_homeassistant: /usr/bin/bash /srv/homeassistant/upgrade_homeassistant.sh
+test: /usr/bin/bash ~/.homeassistant/shell_commands/test.sh

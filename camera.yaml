@@ -1,8 +1,8 @@
 # Show Ole Telefon location
-- platform: generic
-  name: Ole
-  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.ole_s9plus.attributes.latitude }},{{ states.device_tracker.ole_s9plus.attributes.longitude }}&zoom=14&size=492x492&maptype=roadmap&markers=color:black%7Clabel:Ole%7C{{ states.device_tracker.ole_s9plus.attributes.latitude }},{{ states.device_tracker.ole_s9plus.attributes.longitude }}&key=AIzaSyAXakuuAtwXYnGmbOgeNerfMWzRa9Hfw2g
-  limit_refetch_to_url_change: false
+#- platform: generic
+#  name: Ole
+#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.ole_s9plus.attributes.latitude }},{{ states.device_tracker.ole_s9plus.attributes.longitude }}&zoom=14&size=492x492&maptype=roadmap&markers=color:black%7Clabel:Ole%7C{{ states.device_tracker.ole_s9plus.attributes.latitude }},{{ states.device_tracker.ole_s9plus.attributes.longitude }}&key=AIzaSyAXakuuAtwXYnGmbOgeNerfMWzRa9Hfw2g
+#  limit_refetch_to_url_change: false
 
 # International Space Station location
 #  - platform: generic
@@ -21,10 +21,11 @@
   still_image_url: http://10.0.0.23/image/jpeg.cgi
   mjpeg_url: http://10.0.0.23/video.cgi
 
-- platform: generic
-  name: Netbox Topology
-  still_image_url: 'http://doc.olenoerby.dk/api/extras/topology-maps/1/render'
-  content_type: 'image/png'
-  authentication: basic
-  username: !secret netbox_username
-  password: !secret netbox_password
+- platform: mjpeg
+  name: D-Link Webcam 2
+  still_image_url: http://10.0.0.33/image/jpeg.cgi
+  mjpeg_url: http://10.0.0.33/video.cgi
+
+- platform: ffmpeg
+  name: Nexus Outdoor
+  input: -rtsp_transport tcp -i rtsp://10.0.0.31/ucast/11

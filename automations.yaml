@@ -1,0 +1,11 @@
+- id: '1542115958442'
+  alias: Renew SSL
+  trigger:
+  - below: '29'
+    entity_id: sensor.ssl_cert_expiry
+    platform: numeric_state
+  condition: []
+  action:
+  - alias: ''
+    data: {}
+    service: shell_command.renew_ssl

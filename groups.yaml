@@ -18,15 +18,13 @@ default_view:
     - device_tracker.ford_fiesta
     - device_tracker.kirstelefon_bluetooth
     - group.weatherimage
-
 #    - group.weather
-
     - group.trackingmap
     - group.phone
-    - media_player.living_room_tv
-    - media_player.living_room_speaker
-    - group.home_camera
-    - group.coinbase
+    - media_player.chromecast_tv
+    - media_player.mrx3
+    - media_player.google_assistant
+    - group.aquarium_cameras
 
 #
 # VIEW - TRADFRI
@@ -42,6 +40,13 @@ view_tradfri:
     - group.tradfri_bathroom
     - group.hygge
     # - group.tradfri_remote
+
+cam_view:
+  view: yes
+  icon: mdi:cctv
+  entities:
+    - group.aquarium_cameras
+    - group.home_cameras
 
 #
 # VIEW - WEATHER
@@ -83,7 +88,7 @@ view_networking:
     - group.pihole
     - group.qnap_nas_alpha
     - group.qnap_nas_terra
-    - group.netbox
+    - group.apc_ups
 
 # VIEW - INFORMATION AND SETTINGS
 view_information:
@@ -92,7 +97,7 @@ view_information:
   icon: mdi:information
   entities:
     - sensor.current_version
-    - group.rpiinfo
+    - group.serverinfo
     - group.ssl_cert
 
 # VIEW - AUTOMATIONS
@@ -126,11 +131,17 @@ time:
     - sensor.date
     - sensor.time_utc
 
-home_camera:
-  name: Home Webcam
+home_cameras:
+  name: Home Surveillance
   entities:
-    - camera.home_camera
-    - camera.dlink_webcam
+#    - camera.dlink_outdoor
+    - camera.nexus_outdoor
+
+aquarium_cameras:
+  name: Aqua-Cam
+  entities:
+    - camera.d_link_webcam
+    - camera.d_link_webcam_2
 
 weatherimage:
   name: Weather Image
@@ -170,7 +181,6 @@ weather_darksky_wind:
   entities:  
     - sensor.dark_sky_wind_speed
     - sensor.dark_sky_wind_bearing
-    - sensor.dark_sky_nearest_storm_distance
 
 weather_darksky_pressure:
   name: Pressure Sensors
@@ -219,41 +229,34 @@ trackingmap:
 # VIEW - TRADFRI
 #
 tradfri_stue_spot:
-  name: Stue Spot
+  name: Spotlampen i stuen
   entities:
-    - light.stue_spot_hjre_varm_hvid_3
-    - light.stue_spot_midt_varm_hvid_2
-    - light.stue_spot_venstre_varm_hvid_1
+    - light.hojre_spot_i_stuen
+    - light.midterste_spot_i_stuen
+    - light.venstre_spot_i_stuen
 
 tradfri_stue:
   name: Stue
   entities:
     - group.tradfri_stue_spot
-    - light.stue_stander_hvidt_spektrum
+    - light.standeren_i_stuen
 
 tradfri_entre:
   name: Entré
   entities:
-#    - light.entre
-    - light.entre_loftlampe
+    - light.entre_lampen
 
 tradfri_bedroom:
   name: Soveværelse
   entities:
-    #- light.sovevrelse
-    - light.sovevrelse_stander_hvidt_spektrum
-    - light.gang_loftlampe
+    - light.sengelampen
+    - light.standeren_i_sovevaerelset
+    - light.gangen
 
 tradfri_bathroom:
   name: Badeværelse
   entities:
-    - light.toilet
-
-hygge:
-  name: Hygge Stemning
-  entities:
-    - boolean_input.hygge_mode
-    - switch.flux
+    - light.badevaerelseslampen
 
 #tradfri_remote:
 #  name: IKEA Remote
@@ -268,6 +271,9 @@ people:
   name: People Tracked
   entities:
     - device_tracker.ole_s9plus
+    - device_tracker.ford_fiesta
+    - device_tracker.kirstelefon_bluetooth
+    - device_tracker.kirstelefon_wifi
 
 steam:
   name: Steam Friends Online
@@ -336,9 +342,18 @@ netbox:
   entities: 
     - camera.netbox_topology
 
+apc_ups:
+  name: APC Smart UPS 1000
+  entities:
+    - sensor.ups_status
+    - sensor.ups_battery
+    - sensor.ups_battery_voltage
+    - sensor.ups_time_left
+
+
 # VIEW - INFORMATION AND SETTINGS
 
-rpiinfo:
+serverinfo:
   name: Usage
   entities:
     - sensor.ipv4_address_eno1

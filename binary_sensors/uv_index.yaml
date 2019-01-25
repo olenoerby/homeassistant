@@ -2,4 +2,4 @@
   sensors:
     dark_sky_uv_index_high:
       value_template: "{{ states ('sensor.dark_sky_uv_index.state') | int > 4 }}"
-      friendly_name: Dark Sky UV Index High 
+      friendly_name: Dark Sky UV Index Over 4

@@ -1,8 +1,8 @@
-default: info
+default: warn
 logs:
   aiohttp.access: warn
   tradfri: info
-  twitch: info
+  twitch: warn
   homeassistant.components.aiohttp.access: warn
   homeassistant.components.device_tracker: warn
   homeassistant.components.http: warn
@@ -40,9 +40,11 @@ logs:
   sensor.weather_high_clouds: warn
   sensor.weather_fog: warn
   #Google Maps
-  homeassistant.components.camera.generic: info
+  homeassistant.components.camera.generic: warn
   #Lights
   light: warn
   switch.flux: warn
-  custom_components.device_tracker.traccar: debug
-  aioimaplib.aioimaplib: info
+  custom_components.device_tracker.traccar: warn
+  aioimaplib.aioimaplib: warn
+  #Last.fm
+  sensor.lastfm_leutnant13: critical
