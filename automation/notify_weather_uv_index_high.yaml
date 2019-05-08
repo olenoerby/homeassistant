@@ -1,5 +1,5 @@
 #Notify about Updates available
-- alias: UV Index High
+- alias: 'NOTIFY: High UV Index Warning'
   trigger:
     - platform: numeric_state
       entity_id: 
@@ -13,5 +13,5 @@
     - service: persistent_notification.create
       data_template:
         message: !include response_texts/weather_uv_index_high.yaml
-        title: "UV Index is high"
+        title: "Sunlight UV Index Warning"
         notification_id: "1001"

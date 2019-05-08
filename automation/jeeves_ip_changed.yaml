@@ -1,0 +1,9 @@
+- alias: 'JEEVES: IP Changed'
+  trigger:
+    platform: state
+    entity_id: sensor.home_dvice_dk
+  action:
+    - service: notify.jeeves
+      data_template:
+        message: Your IP has changed to {{ states.sensor.home_dvice_dk.state }}.
+        target: !secret ole_phone_number

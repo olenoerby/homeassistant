@@ -15,16 +15,15 @@
 
 - platform: facebook
   name: Jeeves
-  page_access_token: !secret facebook_page_access_token
+  page_access_token: !secret facebook_jeeves_page_access_token
+
+- platform: facebook
+  name: Lydia
+  page_access_token: !secret facebook_lydia_page_access_token
 
 # - platform: pushbullet
 #   name: pushbullet
 #   api_key: !secret pushbullet_api_key
-
-- platform: html5
-  name: html5
-  gcm_api_key: !secret gcm_api_key
-  gcm_sender_id: !secret gcm_sender_id
 
 # - name: sms
 #   platform: twilio_sms

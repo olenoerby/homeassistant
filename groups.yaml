@@ -21,10 +21,14 @@ default_view:
 #    - group.weather
     - group.trackingmap
     - group.phone
-    - media_player.chromecast_tv
-    - media_player.mrx3
+    - media_player.samsung_tv_remote
+    - media_player.chromecast3101
+    - media_player.living_room_speaker
+    - media_player.mxr3
     - media_player.google_assistant
     - group.aquarium_cameras
+
+
 
 #
 # VIEW - TRADFRI
@@ -38,15 +42,36 @@ view_tradfri:
     - group.tradfri_entre
     - group.tradfri_bedroom
     - group.tradfri_bathroom
-    - group.hygge
-    # - group.tradfri_remote
+    - group.tradfri_akvarierne
 
-cam_view:
+
+
+#
+# - CLIMATE
+#
+view_climate:
+  name: Climate
+  view: yes
+  icon: mdi:radiator
+  entities:
+    - group.tado_status
+    - group.tado_stuen
+    - group.tado_sovevaerelset
+    - group.tado_badevaerelset
+
+
+
+#
+# VIEW - CAMERAS
+#
+view_cams:
   view: yes
   icon: mdi:cctv
   entities:
     - group.aquarium_cameras
     - group.home_cameras
+
+
 
 #
 # VIEW - WEATHER
@@ -65,6 +90,7 @@ view_weather:
     - group.weather_darksky_atmosphere
 
 
+
 #
 # VIEW - SOCIAL
 #
@@ -78,17 +104,35 @@ view_social:
     - group.lastfm
     - group.twitch
 
+
+
+#octoprint:
+#  name: 3D Printer
+#  view: yes
+#  icon: mdi:printer-3d
+#  entities:
+#    - group.prusa_state
+#    - group.prusa_time
+#    - group.prusa_tool
+#    - group.prusa_bed
+
+
+
 # VIEW - NETWORKING
 view_networking:
   name: Networking
   view: yes
   icon: mdi:server-network
   entities:
+    - group.ip_monitoring
     - group.speedtest
     - group.pihole
     - group.qnap_nas_alpha
+    - group.synology_nas_beta
     - group.qnap_nas_terra
     - group.apc_ups
+
+
 
 # VIEW - INFORMATION AND SETTINGS
 view_information:
@@ -96,9 +140,15 @@ view_information:
   view: yes
   icon: mdi:information
   entities:
-    - sensor.current_version
-    - group.serverinfo
+    - group.current_version
+    - updater.updater
+    - group.serverboot
+    - group.server_usage
+    - group.server_disk_usage
+    - group.server_disk_usage_home
     - group.ssl_cert
+
+
 
 # VIEW - AUTOMATIONS
 view_automations:
@@ -111,9 +161,20 @@ view_automations:
 
 
 
+
+
+
+
+
 ######################################################################################################
 ######################################################################################################
 ######################################################################################################
+
+
+
+
+
+
 
 
 #
@@ -121,11 +182,13 @@ view_automations:
 #
 HomeAssistant:
   name: Home Assistant Settings
+  control: hidden
   entities:
     - automation.update_available_notifications
 
 time:
   name: Time
+  control: hidden
   entities:
     - sensor.time
     - sensor.date
@@ -133,48 +196,69 @@ time:
 
 home_cameras:
   name: Home Surveillance
+  control: hidden
   entities:
 #    - camera.dlink_outdoor
     - camera.nexus_outdoor
 
+
+
 aquarium_cameras:
   name: Aqua-Cam
+  control: hidden
   entities:
     - camera.d_link_webcam
     - camera.d_link_webcam_2
 
+
+
 weatherimage:
   name: Weather Image
+  control: hidden
   entities:
     - camera.weather
     # - camera.iss
 
+
+
 weather_darksky:
   name: Weather
+  control: hidden
   entities:
     - sensor.dark_sky_summary
     - sensor.dark_sky_hourly_summary
     - sensor.dark_sky_daily_summary
 
+
+
 weather_darksky_uv_index:
   name: UV Index
+  control: hidden
   entities:
     - sensor.dark_sky_uv_index
 
+
+
 weather_darksky_temperature:
   name: Temperature Information
+  control: hidden
   entities:
     - sensor.dark_sky_temperature
     - sensor.dark_sky_apparent_temperature
     - sensor.dark_sky_humidity
 
+
+
 weather_darksky_rain:
   name: Rain Precipitation
+  control: hidden
   entities:
-    - sensor.dark_sky_precip_type
+    - sensor.dark_sky_precip
     - sensor.dark_sky_precip_intensity
     - sensor.dark_sky_precip_probability
     - sensor.dark_sky_dew_point
+
+
 
 weather_darksky_wind:
   name: Wind Information
@@ -182,22 +266,29 @@ weather_darksky_wind:
     - sensor.dark_sky_wind_speed
     - sensor.dark_sky_wind_bearing
 
+
+
 weather_darksky_pressure:
   name: Pressure Sensors
+  control: hidden
   entities:
     - sensor.dark_sky_pressure
     - sensor.dark_sky_visibility
     - sensor.dark_sky_ozone
 
+
+
 weather_darksky_atmosphere:
   name: Atmosphere Information
+  control: hidden
   entities:
-    - sensor.dark_sky_cloud_cover
+    - sensor.dark_sky_cloud_coverage
 
 
 
 weather:
   name: Weather from YR.no
+  control: hidden
   entities:
     - sensor.weather_temperature
     - sensor.weather_wind_speed
@@ -208,22 +299,33 @@ weather:
     - sensor.weather_dewpoint_temperature
     - sensor.weather_cloudiness
 
+
+
 mail:
-    - sensor.olemail
-    - history_graph.ulste_emails
+  name: E-mails
+  control: hidden
+  entities:
+    - sensor.ole_dvice_dk
+    - history_graph.unread
+
+
 
 phone:
   name: Phone
+  control: hidden
   entities:
     - sensor.drive_to_home
-    - sensor.phone_bike_to_home
     - sensor.drive_to_work
     - sensor.phone_battery
 
-trackingmap:
-  name: Ole location
-  entities:
-    - camera.ole
+
+
+#trackingmap:
+#  name: Ole location
+#  entities:
+#    - camera.ole_placering
+
+
 
 #
 # VIEW - TRADFRI
@@ -234,6 +336,13 @@ tradfri_stue_spot:
     - light.hojre_spot_i_stuen
     - light.midterste_spot_i_stuen
     - light.venstre_spot_i_stuen
+    - switch.lyskaeden_i_stuen
+
+tradfri_akvarierne:
+  name: Akvarierne
+  control: hidden
+  entities:
+    - switch.lyset_i_akvarierne
 
 tradfri_stue:
   name: Stue
@@ -243,6 +352,7 @@ tradfri_stue:
 
 tradfri_entre:
   name: Entré
+  control: hidden
   entities:
     - light.entre_lampen
 
@@ -251,10 +361,12 @@ tradfri_bedroom:
   entities:
     - light.sengelampen
     - light.standeren_i_sovevaerelset
+    - switch.lyset_under_sengen
     - light.gangen
 
 tradfri_bathroom:
   name: Badeværelse
+  control: hidden
   entities:
     - light.badevaerelseslampen
 
@@ -263,55 +375,136 @@ tradfri_bathroom:
 #  entities:
 #    - sensor.remote
 
+
+#
+# VIEW - CLIMATE
+#
+tado_status:
+  name: Tado Status
+  control: hidden
+  entities:
+
+tado_stuen:
+  name: Stuen
+  entities:
+    - climate.stuen
+    - sensor.stuen_humidity
+    - sensor.stuen_heating
+    - sensor.stuen_tado_mode
+
+tado_sovevaerelset:
+  name: Soveværelset
+  entities:
+    - climate.sovevaerelset
+    - sensor.sovevaerelset_humidity
+    - sensor.sovevaerelset_heating
+    - sensor.sovevaerelset_tado_mode
+
+
+tado_badevaerelset:
+  name: Badeværelset
+  entities:
+    - climate.badevaerelset
+    - sensor.badevaerelset_humidity
+    - sensor.badevaerelset_heating
+    - sensor.badevaerelset_tado_mode
+
+
+
 #
 # VIEW - SOCIAL
 #
 
 people:
-  name: People Tracked
+  name: Tracking
+  control: hidden
   entities:
     - device_tracker.ole_s9plus
     - device_tracker.ford_fiesta
-    - device_tracker.kirstelefon_bluetooth
-    - device_tracker.kirstelefon_wifi
 
 steam:
   name: Steam Friends Online
+  control: hidden
   entities:
     - sensor.steam_76561198003340322 # Ole
     - sensor.steam_76561198049340420 # Rasmus
+    - sensor.steam_76561198197483243 # Kirstine
     - sensor.steam_76561198003063216 # Jesper
 
 lastfm:
   name: LAST.fm
+  control: hidden
   entities:
     - sensor.lastfm_leutnant13
     - sensor.lastfm_leutnant13_playcount
 
 twitch:
   name: Twitch Subscribtions Online
+  control: hidden
   entities:
     - sensor.nerdcubed
 
 #
+# VIEW - 3D PRINTER
+#
+prusa_state:
+  name: 3D Printer State
+  control: hidden
+  entities:
+    - sensor.prusa_i3_mk2_current_state
+    - binary_sensor.prusa_i3_mk2_printing
+    - binary_sensor.prusa_i3_mk2_printing_error
+    - sensor.prusa_i3_mk2_job_percentage
+
+prusa_time:
+  name: Time info
+  control: hidden
+  entities:
+    - sensor.prusa_i3_mk2_time_remaining
+    - sensor.prusa_i3_mk2_time_elapsed
+
+prusa_tool:
+  name: Tool info
+  control: hidden
+  entities:
+    - sensor.prusa_i3_mk2_actual_tool0_temp
+    - sensor.prusa_i3_mk2_target_tool0_temp
+
+prusa_bed:
+  name: Bed info
+  control: hidden
+  entities:
+    - sensor.prusa_i3_mk2_actual_bed_temp
+    - sensor.prusa_i3_mk2_target_bed_temp
+
+#
 # VIEW - NETWORKING
 #
+ip_monitoring:
+  name: IP Monitor
+  control: hidden
+  entities:
+    - sensor.ipv4_address_eno1
+    - sensor.home_dvice_dk
+    - sensor.server_dvice_dk
 
 pihole:
   name: Pi-Hole
+  control: hidden
   entities:
-    - sensor.pihole_domains_blocked
-    - sensor.pihole_ads_blocked_today
-    - sensor.pihole_dns_unique_domains
-    - sensor.pihole_ads_percentage_blocked_today
-    - sensor.pihole_dns_unique_clients
-    - sensor.pihole_dns_queries_cached
-    - sensor.pihole_dns_queries_forwarded
-    - sensor.pihole_dns_queries_today
+    - sensor.pi_hole_domains_blocked
+    - sensor.pi_hole_ads_blocked_today
+    - sensor.pi_hole_dns_unique_domains
+    - sensor.pi_hole_ads_percentage_blocked_today
+    - sensor.pi_hole_dns_unique_clients
+    - sensor.pi_hole_dns_queries_cached
+    - sensor.pi_hole_dns_queries_forwarded
+    - sensor.pi_hole_dns_queries_today
     - history_graph.pihole_blocked_ads_today
 
 speedtest:
   name: Speedtest Results
+  control: hidden
   entities:
     - sensor.speedtest_ping
     - sensor.speedtest_download
@@ -321,15 +514,31 @@ speedtest:
 
 qnap_nas_alpha:
   name: ALPHA.local
+  control: hidden
   entities:
     - sensor.alpha_status
     - sensor.alpha_free_space_datavol1
     - sensor.alpha_volume_used_datavol1
+    - sensor.alpha_free_space_datavol2
+    - sensor.alpha_volume_used_datavol2
     - sensor.alpha_cpu_usage
     - sensor.alpha_memory_usage
 
+synology_nas_beta:
+  name: BETA.local
+  control: hidden
+  entities:
+    - sensor.cpu_load_total
+    - sensor.total_size_volume_1
+    - sensor.used_space_volume_1
+    - sensor.volume_used_volume_1
+    - sensor.memory_usage_real
+    - sensor.network_down
+    - sensor.network_up
+
 qnap_nas_terra:
   name: TERRA.local
+  control: hidden
   entities:
     - sensor.terra_status
     - sensor.terra_free_space_volume_1
@@ -337,14 +546,11 @@ qnap_nas_terra:
     - sensor.terra_cpu_usage
     - sensor.terra_memory_usage
 
-netbox:
-  name: Netbox Overview
-  entities: 
-    - camera.netbox_topology
-
 apc_ups:
   name: APC Smart UPS 1000
+  control: hidden
   entities:
+    - sensor.ups_model
     - sensor.ups_status
     - sensor.ups_battery
     - sensor.ups_battery_voltage
@@ -352,29 +558,55 @@ apc_ups:
 
 
 # VIEW - INFORMATION AND SETTINGS
-
-serverinfo:
-  name: Usage
+current_version:
+  name: Homeassistant version
+  control: hidden
   entities:
-    - sensor.ipv4_address_eno1
-    - sensor.homedvicedk
-    - sensor.serverdvicedk
-    - sensor.ram_available
-    - sensor.disk_used_home
+    - sensor.current_version
+
+serverboot:
+  name: Server uptime
+  control: hidden
+  entities:
     - sensor.last_boot
+
+server_usage:
+  name: Server usage
+  control: hidden
+  entities:
+    - sensor.cpu_speed
+    - sensor.memory_use
+    - sensor.memory_free
+    - sensor.memory_use_percent
+
+server_disk_usage:
+  name: Root usage
+  control: hidden
+  entities:
+    - sensor.disk_use
+    - sensor.disk_free
+    - sensor.disk_use_percent
+
+server_disk_usage_home:
+  name: /home usage
+  control: hidden
+  entities:
+    - sensor.disk_use_home
+    - sensor.disk_free_home
+    - sensor.disk_use_percent_home
 
 ssl_cert:
   name: SSL certificate information
+  control: hidden
   entities:
     - sensor.ssl_cert_expiry
-    - switch.ssl_certificate_renew
-
+    - automation.trigger_let_s_encrypt_auto_renewal
 
 # VIEW - AUTOMATIONS
 
 guest_automations:
   name: Disable when guests at home
   entities:
-    - automation.jeeves_nice_day_notification
-    - automation.home_zone__turn_on_light_when_evening
-    - automation.home_zone__turn_on_light_when_home
+    - automation.jeeves_leaving_house_and_turning_off_all_lights
+#    - automation.home_zone__turn_on_light_when_home_evening
+#    - automation.home_zone__turn_on_light_when_home

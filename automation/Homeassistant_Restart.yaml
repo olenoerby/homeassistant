@@ -1,5 +1,0 @@
-#Notify about Updates available
-- alias: 'Restart Home Assistant'
-  trigger:
-  action:
-    - service: shell_command.restart_homeassistant

@@ -1,4 +1,2 @@
-restart_homeassistant: bash service homeassistant restart
-renew_ssl: ~/.homeassistant/shell_commands/certbot_update.sh
-upgrade_homeassistant: /usr/bin/bash /srv/homeassistant/upgrade_homeassistant.sh
-test: /usr/bin/bash ~/.homeassistant/shell_commands/test.sh
+upgrade_homeassistant: /bin/bash -c "/home/homeassistant/.homeassistant/upgrade_homeassistant.sh"'
+echo_test: /bin/bash -c "echo_test.sh"

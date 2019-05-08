@@ -1,0 +1,21 @@
+#Notify about failed logins
+- alias: "Send notification upon failed login attempt"
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: persistent_notification.http_login
+  condition:
+    - condition: template
+      value_template: "{{ trigger.to_state.state != 'None' }}"
+  action:
+    - service: notify.jeeves
+      data_template:
+        message: 'url: https://whatismyipaddress.com/ip/{{ states.persistent_notification.http_login.attributes.message.split ("from ") [1]}}'
+        target: !secret ole_phone_number
+    - service: notify.home_assistant
+      data_template:
+        title: "{{ states.persistent_notification.http_login.attributes.message }}"
+        message: 'url: https://whatismyipaddress.com/ip/{{ states.persistent_notification.http_login.attributes.message.split ("from ") [1]}}'
+#    - service: persistent_notification.dismiss
+#      data:
+#        notification_id: 'http_login'

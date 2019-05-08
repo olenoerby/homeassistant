@@ -1,4 +1,4 @@
-- alias: 'Jeeves Nice Day notification'
+- alias: 'JEEVES: Leaving House and turning off all lights'
   trigger:
     - platform: zone
       event: leave

@@ -1,5 +1,14 @@
-#Notify about Updates available
-- alias: 'Test'
-  trigger:
-  action:
-    - service: shell_command.test
+#
+# THIS IS FOR TESTING 
+#   PURPOSES ONLY
+# DISABLED BY DEFAULT
+#
+
+#- alias: 'Test Message'
+#  initial_state: 'off'
+#  trigger:
+#  action:
+#    - service: notify.jeeves
+#      data_template:
+#        message: !include response_texts/test.yaml
+#        target: !secret ole_phone_number

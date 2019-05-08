@@ -1,8 +1,8 @@
 # Show Ole Telefon location
-#- platform: generic
-#  name: Ole
-#  still_image_url: !secret google_maps_ole_location
-#  limit_refetch_to_url_change: false
+- platform: generic
+  name: Ole Placering
+  still_image_url: !secret google_maps_ole_location
+  limit_refetch_to_url_change: false
 
 # International Space Station location
 #  - platform: generic

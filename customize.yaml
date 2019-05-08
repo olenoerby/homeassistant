@@ -21,7 +21,7 @@ sensor.phone_bike_to_home:
   friendly_name: Bike to Home Time
   icon: mdi:bike
 
-sensor.sgs7_battery:
+sensor.s9plus_battery:
   icon: mdi:battery
 
 
@@ -111,8 +111,8 @@ light.sovevrlse:
   google_assistant: false
 
 group.mail:
-  friendly_name: Ulæste mails
+  friendly_name: Mails
 
-sensor.olemail:
+sensor.ole_dvice_dk:
   friendly_name: ole@dvice.dk
-  unit_of_measurement: "Ulæste e-mails"
+  unit_of_measurement: "Mails"

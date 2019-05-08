@@ -1,4 +1,4 @@
-- alias: 'Good Morning Weekday Message'
+- alias: 'JEEVES: Workday Good Morning Message'
   trigger:
     platform: time
     at: '07:00:00'

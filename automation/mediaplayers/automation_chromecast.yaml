@@ -1,5 +1,5 @@
 # Turn on light when pausing Chromecast, after sundown
-- alias: "Media player paused/stopped"
+- alias: "MONITOR: Media player paused/stopped"
   trigger:
     - platform: state
       entity_id: media_player.living_room_tv
@@ -16,7 +16,7 @@
       entity_id: scene.stue_normal_light
 
 # Dim lights when playing Chromecast after sundown
-- alias: "Media player playing"
+- alias: "MONITOR: Media player playing"
   trigger:
     - platform: state
       entity_id: media_player.living_room_tv

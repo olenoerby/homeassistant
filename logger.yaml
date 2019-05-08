@@ -6,7 +6,7 @@ logs:
   homeassistant.components.aiohttp.access: warn
   homeassistant.components.device_tracker: warn
   homeassistant.components.http: warn
-  homeassistant.components.http.ban: info
+  homeassistant.components.http.ban: critical
   homeassistant.components.websocket_api: critical
   homeassistant.components.discovery: warn
   homeassistant.sensor.drive_to_home: warn
@@ -40,7 +40,9 @@ logs:
   sensor.weather_high_clouds: warn
   sensor.weather_fog: warn
   #Google Maps
-  homeassistant.components.camera.generic: warn
+  homeassistant.components.camera.generic: critical
+  #Cameras offline
+  homeassistant.components.mjpeg.camera: critical
   #Lights
   light: warn
   switch.flux: warn

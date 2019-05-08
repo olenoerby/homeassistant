@@ -1,5 +1,5 @@
 #Notify about Updates available
-- alias: 'Update Available Notifications'
+- alias: 'NOTIFY: Update Available'
   trigger:
     platform: state
     entity_id: updater.updater

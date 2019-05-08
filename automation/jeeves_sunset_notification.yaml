@@ -1,0 +1,10 @@
+#Jeeves actions
+- alias: 'JEEVES: Sunset Notification'
+  trigger:
+    - platform: sun
+      event: sunset
+  action:
+    - service: notify.jeeves
+      data:
+        message: !include response_texts/jeeves_evening_greeting.yaml
+        target: !secret ole_phone_number

@@ -1,0 +1,4 @@
+- alias: 'TRIGGER: Echo Test'
+  trigger:
+  action:
+    - service: shell_command.echo_test
