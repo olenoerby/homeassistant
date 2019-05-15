@@ -26,6 +26,11 @@
   still_image_url: http://10.0.0.33/image/jpeg.cgi
   mjpeg_url: http://10.0.0.33/video.cgi
 
-- platform: ffmpeg
-  name: Nexus Outdoor
-  input: -rtsp_transport tcp -i rtsp://10.0.0.31/ucast/11
+#- platform: ffmpeg
+#  name: Nexus Outdoor
+#  input: -rtsp_transport tcp -i rtsp://10.0.0.31/ucast/11
+
+- platform: generic
+  name: DMI UV-Index
+  still_image_url: http://nuv.dmi.dk/fileadmin/nuv/daily/UVgrafik_300x150.png
+  

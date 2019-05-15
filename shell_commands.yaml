@@ -1,2 +1,1 @@
-upgrade_homeassistant: /bin/bash -c "/home/homeassistant/.homeassistant/upgrade_homeassistant.sh"'
-echo_test: /bin/bash -c "echo_test.sh"
+upgrade_homeassistant: /bin/bash -c "/home/homeassistant/.homeassistant/upgrade_script.sh"'

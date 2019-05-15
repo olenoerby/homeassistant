@@ -6,28 +6,33 @@ default_view:
   icon: mdi:home 
   entities:
     - group.time
-    - group.weather_darksky_uv_index
-    - group.mail
+#    - group.mail
     - sun.sun
-    - sensor.weather_symbol
     - sensor.day_night
     - sensor.yr_temperature
     - sensor.yr_symbol
-    - sensor.weather_symbol
+    - sensor.ark_sky_hourly_summary
     - device_tracker.ole_s9plus
     - device_tracker.ford_fiesta
-    - device_tracker.kirstelefon_bluetooth
-    - group.weatherimage
-#    - group.weather
+    - sensor.dark_sky_hourly_summary
+    - group.climate_glance
+    - group.weather_glance
     - group.trackingmap
-    - group.phone
-    - media_player.samsung_tv_remote
-    - media_player.chromecast3101
-    - media_player.living_room_speaker
-    - media_player.mxr3
-    - media_player.google_assistant
+    - group.tracking_glance
+    - group.phone_info
     - group.aquarium_cameras
 
+#
+# VIEW - PLAYERS
+#
+view_media_players:
+  name: Media Players
+  view: yes
+  icon: mdi:play
+  entities:
+    - group.chromecast
+    - group.smart_devices
+    - group.home_assistants
 
 
 #
@@ -43,6 +48,7 @@ view_tradfri:
     - group.tradfri_bedroom
     - group.tradfri_bathroom
     - group.tradfri_akvarierne
+    - group.tradfri_bat_level
 
 
 
@@ -54,7 +60,6 @@ view_climate:
   view: yes
   icon: mdi:radiator
   entities:
-    - group.tado_status
     - group.tado_stuen
     - group.tado_sovevaerelset
     - group.tado_badevaerelset
@@ -127,10 +132,26 @@ view_networking:
     - group.ip_monitoring
     - group.speedtest
     - group.pihole
+    - group.apc_ups
+
+# VIEW - SERVERS
+view_servers:
+  name: Servers
+  view: yes
+  icon: mdi:server
+  entities:
+   - group.minecraft_servers
+
+# VIEW - STORAGE
+view_storage:
+  name: Storage
+  view: yes
+  icon: mdi:nas
+  entities:
     - group.qnap_nas_alpha
     - group.synology_nas_beta
     - group.qnap_nas_terra
-    - group.apc_ups
+    - group.qnap_nas_delta
 
 
 
@@ -143,6 +164,7 @@ view_information:
     - group.current_version
     - updater.updater
     - group.serverboot
+    - group.fail2ban
     - group.server_usage
     - group.server_disk_usage
     - group.server_disk_usage_home
@@ -210,15 +232,14 @@ aquarium_cameras:
     - camera.d_link_webcam
     - camera.d_link_webcam_2
 
-
-
-weatherimage:
-  name: Weather Image
+weather_glance:
+  #Used on frontpage
+  name: Weather Overview
   control: hidden
   entities:
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_uv_index
     - camera.weather
-    # - camera.iss
-
 
 
 weather_darksky:
@@ -286,21 +307,6 @@ weather_darksky_atmosphere:
 
 
 
-weather:
-  name: Weather from YR.no
-  control: hidden
-  entities:
-    - sensor.weather_temperature
-    - sensor.weather_wind_speed
-    - sensor.weather_wind_direction
-    - sensor.weather_pressure
-    - sensor.weather_precipitation
-    - sensor.weather_humidity
-    - sensor.weather_dewpoint_temperature
-    - sensor.weather_cloudiness
-
-
-
 mail:
   name: E-mails
   control: hidden
@@ -310,12 +316,18 @@ mail:
 
 
 
-phone:
-  name: Phone
+tracking_glance:
+  name: Tracking
   control: hidden
   entities:
     - sensor.drive_to_home
     - sensor.drive_to_work
+
+
+phone_info:
+  name: Phone Info
+  control: hidden
+  entities:
     - sensor.phone_battery
 
 
@@ -324,6 +336,37 @@ phone:
 #  name: Ole location
 #  entities:
 #    - camera.ole_placering
+
+
+
+
+
+#
+# VIEW - MEDIA PLAYERS
+#
+
+chromecast:
+  name: Chromecast
+  entities:
+    - media_player.chromecast3101
+    - media_player.mrx_3
+    - media_player.chromecast7345
+    - media_player.living_room_speaker
+
+
+smart_devices:
+  name: Smart Devices
+  entities:
+    - media_player.samsung_tv_remote
+
+home_assistants:
+  name: Home Assistants
+  entities:
+    - media_player.google_assistant
+
+
+
+
 
 
 
@@ -370,20 +413,28 @@ tradfri_bathroom:
   entities:
     - light.badevaerelseslampen
 
-#tradfri_remote:
-#  name: IKEA Remote
-#  entities:
-#    - sensor.remote
+tradfri_bat_level:
+  name: Trådfri Battery Levels
+  control: hidden
+  entities:
+    - sensor.badevaerelse_remote
+    - sensor.stue_remote
+    - sensor.tradfri_motion_sensor
 
 
 #
 # VIEW - CLIMATE
 #
-tado_status:
-  name: Tado Status
+
+climate_glance:
+  #Used on frontpage
+  name: Climate Overview
   control: hidden
   entities:
-
+    - sensor.stuen_temperature
+    - sensor.sovevaerelset_temperature
+    - sensor.badevaerelset_temperature
+   
 tado_stuen:
   name: Stuen
   entities:
@@ -500,7 +551,6 @@ pihole:
     - sensor.pi_hole_dns_queries_cached
     - sensor.pi_hole_dns_queries_forwarded
     - sensor.pi_hole_dns_queries_today
-    - history_graph.pihole_blocked_ads_today
 
 speedtest:
   name: Speedtest Results
@@ -512,20 +562,45 @@ speedtest:
     - history_graph.speedtest_download_results
     - history_graph.speedtest_upload_results
 
+apc_ups:
+  name: APC Smart UPS 1000
+  control: hidden
+  entities:
+    - sensor.ups_model
+    - sensor.ups_status
+    - sensor.ups_battery
+    - sensor.ups_battery_voltage
+    - sensor.ups_time_left
+
+#
+# VIEW - SERVERS
+#
+minecraft_servers:
+  name: Minecraft Servers
+  control: hidden
+  entities:
+   - sensor.frostpegg
+
+
+#
+# VIEW - STORAGE
+#
 qnap_nas_alpha:
-  name: ALPHA.local
+  name: ALPHA
   control: hidden
   entities:
     - sensor.alpha_status
     - sensor.alpha_free_space_datavol1
     - sensor.alpha_volume_used_datavol1
-    - sensor.alpha_free_space_datavol2
-    - sensor.alpha_volume_used_datavol2
     - sensor.alpha_cpu_usage
     - sensor.alpha_memory_usage
+    - sensor.alpha_network_down_eth0
+    - sensor.alpha_network_up_eth0
+    - sensor.alpha_network_down_eth1
+    - sensor.alpha_network_up_eth1
 
 synology_nas_beta:
-  name: BETA.local
+  name: BETA
   control: hidden
   entities:
     - sensor.cpu_load_total
@@ -537,7 +612,7 @@ synology_nas_beta:
     - sensor.network_up
 
 qnap_nas_terra:
-  name: TERRA.local
+  name: TERRA
   control: hidden
   entities:
     - sensor.terra_status
@@ -546,16 +621,19 @@ qnap_nas_terra:
     - sensor.terra_cpu_usage
     - sensor.terra_memory_usage
 
-apc_ups:
-  name: APC Smart UPS 1000
+qnap_nas_delta:
+  name: DELTA
   control: hidden
   entities:
-    - sensor.ups_model
-    - sensor.ups_status
-    - sensor.ups_battery
-    - sensor.ups_battery_voltage
-    - sensor.ups_time_left
-
+    - sensor.delta_status
+    - sensor.delta_free_space_datavol1
+    - sensor.delta_volume_used_datavol1
+    - sensor.delta_cpu_usage
+    - sensor.delta_memory_usage
+    - sensor.delta_network_down_eth0
+    - sensor.delta_network_up_eth0
+    - sensor.delta_network_down_eth1
+    - sensor.delta_network_up_eth1
 
 # VIEW - INFORMATION AND SETTINGS
 current_version:
@@ -569,6 +647,13 @@ serverboot:
   control: hidden
   entities:
     - sensor.last_boot
+
+fail2ban:
+  name: Fail2ban Info
+  control: hidden
+  entities:
+    - sensor.fail2ban_sshd
+    - sensor.fail2ban_ha
 
 server_usage:
   name: Server usage

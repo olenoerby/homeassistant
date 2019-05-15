@@ -1,7 +1,0 @@
-      >
-      {{ [
-      "Ole",  
-      "Sir",
-      "Master Noerby",
-      "Sire"
-      ] | random }}

@@ -1,0 +1,18 @@
+>
+
+ {% if now().strftime("%H")|int < 12 %}Good morning, {% elif now().strftime("%H")|int < 18 %}Good afternoon, {% else %}Good evening, {% endif %}{{ ["Ole","Sir","Master Noerby","Sire"] | random }}.
+ 
+ 
+ The time is {{states.sensor.time.state}}.
+ 
+ 
+ Today is a {{states.sensor.dayoftheweek.state}} and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month.state}}.
+ 
+ 
+ It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees in Svendborg. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees.
+ 
+ 
+ {% if states.binary_sensor.workday_sensor %}It will take {{ states.sensor.drive_to_work.attributes.duration_in_traffic }} to drive to work today in the current traffic, since you're {{ states.sensor.drive_to_work.attributes.distance|replace('km','')|float }} kilometers away.{% endif %}
+ 
+ 
+ Have a{{ [" pleasant", " amiable", " charming", " cheerful", " delightful", "n enjoyable", " lovely", " pleasing", " satisfying"] | random }} day!

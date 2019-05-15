@@ -6,7 +6,7 @@ logs:
   homeassistant.components.aiohttp.access: warn
   homeassistant.components.device_tracker: warn
   homeassistant.components.http: warn
-  homeassistant.components.http.ban: critical
+  homeassistant.components.http.ban: warn
   homeassistant.components.websocket_api: critical
   homeassistant.components.discovery: warn
   homeassistant.sensor.drive_to_home: warn

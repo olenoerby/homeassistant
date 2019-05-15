@@ -116,3 +116,12 @@ group.mail:
 sensor.ole_dvice_dk:
   friendly_name: ole@dvice.dk
   unit_of_measurement: "Mails"
+
+sensor.fail2ban_ha:
+  friendly_name: Home-Assistant HTTP login bans
+  unit_of_measurement: bans
+
+sensor.fail2ban_sshd:
+  friendly_name: Home-Assistant SSH bans
+  unit_of_measurement: bans
+

@@ -19,12 +19,11 @@ group: !include groups.yaml
 logger: !include logger.yaml
 notify: !include notify.yaml
 recorder: !include recorder.yaml
-scene: !include scenes.yaml
+#scene: !include scenes.yaml
 zone: !include zones.yaml
 
 # FOLDERS
 automation: !include_dir_merge_list automation
-automation old: !include automations.yaml
 binary_sensor: !include_dir_merge_list binary_sensors
 sensor: !include_dir_merge_list sensors
 shell_command: !include shell_commands.yaml
@@ -49,10 +48,6 @@ http:
   ssl_certificate: !secret ssl_certificate_path
   ssl_key: !secret ssl_key_path
 
-
-# IKEA Trådfri
-tradfri:
-  host: !secret tradfri_ip
 
 device_tracker:
   - platform: traccar
@@ -155,13 +150,13 @@ logbook:
 
 # Generate graphs
 history_graph:
-  graph_pihole:
-    name: Pihole Blocked Ads Today
-    entities:
-      - sensor.pi_hole_ads_blocked_today
-      - sensor.pi_hole_ads_percentage_blocked_today
-    hours_to_show: 48
-    refresh: 60
+#  graph_pihole:
+#    name: Pihole Blocked Ads Today
+#    entities:
+#      - sensor.pi_hole_ads_blocked_today
+#      - sensor.pi_hole_ads_percentage_blocked_today
+#    hours_to_show: 48
+#    refresh: 60
 
   graph_speedtest_down:
     name: Speedtest Download Results
@@ -185,13 +180,17 @@ history_graph:
     refresh: 300
 
 panel_iframe:
+  floorplanner:
+    title: 'Floorplan'
+    url: !secret floorplanner_url
+    icon: mdi:house
   router:
     title: 'USG60W'
-    url: 'https://home.dvice.dk:8443'
+    url: !secret router_url
     icon: mdi:server-network
   prtgmap:
     title: 'PRTG'
-    url: 'https://home.dvice.dk:3443/public/mapshow.htm?id=2072&mapid=7757ED3F-9D7B-4818-BE95-AE544FF35334'
+    url: !secret prtg_url
     icon: mdi:monitor-dashboard
 
 # Text to speech
@@ -253,6 +252,6 @@ speedtestdotnet:
 
 media_player:
   - platform: samsungtv
-    host: 10.0.0.39
+    host: !secret samsung_tv_ip
     port: 8001
-    mac: FC:03:9F:8E:4A:C3
+    mac: !secret samsung_tv_mac

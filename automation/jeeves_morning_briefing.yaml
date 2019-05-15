@@ -1,4 +1,4 @@
-- alias: 'JEEVES: Workday Good Morning Message'
+- alias: 'JEEVES: Morning Briefing'
   trigger:
     platform: time
     at: '07:00:00'
@@ -9,5 +9,5 @@
   action:
     - service: notify.jeeves
       data_template:
-        message: !include response_texts/jeeves_morning_workday_greeting.yaml
+        message: !include response_texts/jeeves_morning_briefing.yaml
         target: !secret ole_phone_number

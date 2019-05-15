@@ -10,12 +10,12 @@
   action:
     - service: notify.jeeves
       data_template:
-        message: 'url: https://whatismyipaddress.com/ip/{{ states.persistent_notification.http_login.attributes.message.split ("from ") [1]}}'
+        message: '{{ states.persistent_notification.http_login.attributes.message }}'
         target: !secret ole_phone_number
-    - service: notify.home_assistant
-      data_template:
-        title: "{{ states.persistent_notification.http_login.attributes.message }}"
-        message: 'url: https://whatismyipaddress.com/ip/{{ states.persistent_notification.http_login.attributes.message.split ("from ") [1]}}'
-#    - service: persistent_notification.dismiss
-#      data:
-#        notification_id: 'http_login'
+#    - service: notify.home_assistant
+#      data_template:
+#        title: "{{ states.persistent_notification.http_login.attributes.message }}"
+#        message: 'url: https://whatismyipaddress.com/ip/{{ states.persistent_notification.http_login.attributes.message.split ("from ") [1]}}'
+    - service: persistent_notification.dismiss
+      data:
+        notification_id: 'http_login'

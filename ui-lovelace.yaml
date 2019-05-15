@@ -177,16 +177,6 @@ views:
     theme: light-mode
     cards:
 
-  - title: Netbox Overview
-    id: netbox
-    theme: light-mode
-    panel: true
-    cards:
-      - type: picture
-        title: Netbox Topology
-        image: "http://doc.olenoerby.dk/api/extras/topology-maps/1/render/"
-#        navigation_path: http://doc.olenoerby.dk
-
   - title: Information
     id: info
     theme: light-mode
